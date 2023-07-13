@@ -16,22 +16,25 @@ yarn install
 cp .env.example .env.local
 ```
 
-### 3. Obtain a Wallet Connect Project ID
+### 3. Get a Wallet Connect Project ID
 
 - Log in to the [Wallet Connect dashboard](https://cloud.walletconnect.com/sign-in) and create a new named project
 - Update the NEXT_PUBLIC_WALLET_CONNECT_PROJECT_NAME variable in the `.env.local` file with your new Wallet Connect Project Name, to match the name you gave your project in the Wallet Connect dashboard
 - Update the NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID variable in the `.env.local` file with your new Wallet Connect Project ID from the dashboard
 
-### Run the development server:
+### 4. Get an Alchemy Key
+
+- Sign in to the [Alchemy dashboard](https://alchemy.com/?r=0ebbbd3306fa2de1)
+- Create app with a name of your choice. Select "Polygon zkEVM" for chain and "Polygon zkEVM Testnet" for network
+- Select "View key" for the project you just created
+- Update the NEXT_PUBLIC_ALCHEMY_KEY variable in the `.env.local` file with your new Alchemy Key
+
+### 5. Start the project by running the development server:
 
 ```bash
 yarn run dev
 ```
 
-## Next.js frontend bootstrapped with create-rainbowkit
+## Tools used for starter template
 
-Scaffold a new RainbowKit + wagmi + Next.js app with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
-
-```
-yarn create @rainbow-me/rainbowkit
-```
+This project uses a Next.js frontend bootstrapped with create-rainbowkit. Scaffold a new RainbowKit + wagmi + Next.js app with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
