@@ -7,6 +7,7 @@ A starter template for building a dapp with Account Abstraction and a price feed
 ### 1. Install dependencies:
 
 ```bash
+cd frontend
 yarn install
 ```
 
