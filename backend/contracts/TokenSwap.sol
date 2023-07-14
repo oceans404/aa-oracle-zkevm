@@ -8,7 +8,7 @@ import "@api3/contracts/v0.8/interfaces/IProxy.sol";
 error StalePrice();
 error NoValue();
 
-contract Stable is ERC20Burnable, Ownable {
+contract TokenExchange is ERC20Burnable, Ownable {
     address public proxyAddress;
 
     constructor() ERC20("Stable", "STA") {}
