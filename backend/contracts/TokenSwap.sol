@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@api3/contracts/v0.8/interfaces/IProxy.sol";
 
-/// @title Stable Token Exchange
+/// Stable Token Exchange
 /// @dev Contract to exchange between ETH and a stable ERC20 token, using an external data feed for price.
 error StalePrice();
 error NoValue();
