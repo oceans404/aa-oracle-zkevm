@@ -10,7 +10,17 @@
     "export": "next export"
   },
   "dependencies": {
+    "@biconomy/account": "^3.0.0-alpha.0",
+    "@biconomy/bundler": "^3.0.0-alpha.0",
+    "@biconomy/common": "^3.0.0-alpha.0",
+    "@biconomy/core-types": "^3.0.0-alpha.0",
+    "@biconomy/paymaster": "^3.0.0-alpha.0",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@rainbow-me/rainbowkit": "^1.0.6",
+    "ethers": "5.7.2",
+    "framer-motion": "^10.13.0",
     "next": "^13.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

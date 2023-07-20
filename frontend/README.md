@@ -12,7 +12,9 @@ The TokenSwap contract ABI is in `frontend/artifacts/contracts/TokenSwap.sol/Tok
 
 - Example tx deposit .01 eth to get 18.93 STA: https://testnet-zkevm.polygonscan.com/tx/0x5c332035e065abfd6ca4589e7446eb9de0c7cb876bbcbdee2915fff1d8cbdee0
 
-3. reclaimEth (get ETH back for tokens)
+3. reclaimEth (pass in SPA token amount to get ETH back for burned tokens)
+
+- Example tx to reclaim 1 SPA worth of ETH: https://testnet-zkevm.polygonscan.com/tx/0x83ef87fe74e3b82f8396549b402fd01778389b8692d7fe394e4948725e9ca680
 
 ### Next.js
 

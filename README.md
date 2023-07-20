@@ -98,6 +98,12 @@ Use the link from the verification command output to view your contract on Polyg
 
 Example setProxyAddress tx: https://testnet-zkevm.polygonscan.com/tx/0x432b9039a1b99b04798dac319fdf175895064263e9660bd9d6e6ed1ca35689ec
 
+#### 7. Use the verified contract on Polygonscan to approve
+
+Use the link from the verification command output to view your contract on Polygonscan. Click the "Write Contract" tab. Click "Connect to Web3" and use Metamask to sign in with the account you used to deploy the contract. After signing in, select the approve function. Enter the "spender" as the address of your smart contract. The "amount" should be a large uint256 - I used 15000000000000000000000000 so that the contract can take up to 15,000 SPA. Click "Write." Confirm the tx in your Metamask wallet.
+
+Example approve tx: https://testnet-zkevm.polygonscan.com/tx/0xc59c6ca24cea4e248cd9e4fdcfa5981f1314ac43384c77e1d5304aa684588a8b
+
 ### Frontend setup
 
 #### 1. Enter frontend directory and install dependencies:
@@ -126,7 +132,11 @@ cp .env.example .env.local
 - Select "View key" for the project you just created
 - Update the NEXT_PUBLIC_ALCHEMY_KEY variable in the `.env.local` file with your new Alchemy Key
 
-#### 5. Start the project by running the development server:
+#### 5. Add your private key
+
+- Update the NEXT_PUBLIC_PRIVATE_KEY env variable with your private key from Metamask
+
+#### 6. Start the project by running the development server:
 
 ```bash
 yarn run dev
