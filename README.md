@@ -28,11 +28,12 @@ TokenSwap checks the ETH-USD price from the API3 data feed on Polygon zkEVM Test
 
 Examples
 
-| ETH | ETH-USD price (uint256) | ETH-USD price $ | STA tokens | tx |
-| 1 | 1500000000000000000000 | $1,500 | 1500 | example |
-| 1 | 2000000000000000000000 | $2,000 | 2000 | example |
-| .01 | 1893000000000000000000 | $1,893 | 18.93 | https://testnet-zkevm.polygonscan.com/token/0x1fba51630d9557710778e827d786db624ee3c4e1 |
-| 1 | 1893000000000000000000 | $1,893 | 1893 | https://testnet-zkevm.polygonscan.com/tx/0xd4a309ad49a805a100fa18b3cdd0f45a1b4cd0da2794771b5420d000443a6bf5 |
+| ETH | ETH-USD price (uint256) | ETH-USD price $ | STA tokens | tx                                                                                                          |
+| --- | ----------------------- | --------------- | ---------- | ----------------------------------------------------------------------------------------------------------- |
+| 1   | 1500000000000000000000  | $1,500          | 1500       | example                                                                                                     |
+| 1   | 2000000000000000000000  | $2,000          | 2000       | example                                                                                                     |
+| .01 | 1893000000000000000000  | $1,893          | 18.93      | https://testnet-zkevm.polygonscan.com/token/0x1fba51630d9557710778e827d786db624ee3c4e1                      |
+| 1   | 1893000000000000000000  | $1,893          | 1893       | https://testnet-zkevm.polygonscan.com/tx/0xd4a309ad49a805a100fa18b3cdd0f45a1b4cd0da2794771b5420d000443a6bf5 |
 
 ## Getting started
 
