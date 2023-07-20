@@ -12,7 +12,7 @@ A starter template for building a dapp with Account Abstraction and a price feed
 
 ## Data feed: API3 ETH-USD
 
-[Read a dAPI documentation[](https://docs.api3.org/guides/dapis/read-self-funded-dapi/)
+[Read a dAPI documentation](https://docs.api3.org/guides/dapis/read-self-funded-dapi/)
 ETH-USD dAPI: https://market.api3.org/dapis/polygon-zkevm/ETH-USD
 
 ## Getting started
