@@ -31,12 +31,15 @@ const fetchBalances = async (address: `0x${string}`) => {
   return balances;
 };
 
-const readPriceFeed = async () =>
-  await readContract({
+// contract helpers
+const readPriceFeed = async (): Promise<[ethers.BigNumberish, number]> => {
+  const [price]: any = await readContract({
     address: tokenContract,
     abi,
     functionName: "readDataFeed",
   });
+  return price;
+};
 
 const Home: NextPage = () => {
   const [balance, setBalance] = useState<any | null>(null);
@@ -54,7 +57,7 @@ const Home: NextPage = () => {
     // get price feed
     readPriceFeed()
       .catch(console.error)
-      .then(([price]) => {
+      .then((price: any) => {
         setPriceFeed(parseFloat(ethers.utils.formatEther(price)));
       });
   }, [account.address]);

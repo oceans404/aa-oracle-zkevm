@@ -9,7 +9,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-const Swap = (props: { priceFeed: number }) => {
+const Swap = (props: { priceFeed: number | null }) => {
   return (
     <Card my={4} p={4}>
       <CardHeader>
