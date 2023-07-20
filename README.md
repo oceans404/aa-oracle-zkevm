@@ -10,6 +10,11 @@ A starter template for building a dapp with Account Abstraction and a price feed
 | --------------------- | --------------------------------- | ------- | ------------------------------------- | -------------------------------------- |
 | Polygon zkEVM Testnet | https://rpc.public.zkevm-test.net | 1442    | https://testnet-zkevm.polygonscan.com | https://zkevm.polygonscan.com/myapikey |
 
+## Data feed: API3 ETH-USD
+
+[Read a dAPI documentation[](https://docs.api3.org/guides/dapis/read-self-funded-dapi/)
+ETH-USD dAPI: https://market.api3.org/dapis/polygon-zkevm/ETH-USD
+
 ## Getting started
 
 #### 0. Wallet setup: Create a [Metamask](https://metamask.io/) wallet, add the Polygon zkEVM testnet network to your Metamask networks, and get Polygon zkEVM testnet ETH
@@ -49,7 +54,9 @@ npx hardhat compile
 npx hardhat run scripts/deploy.ts --network polygonZKEVMTestnet
 ```
 
-Note: Contract artifacts are output to the frontend/artifacts directory. You can find the ABI in `frontend/artifacts/contracts/TokenSwap.sol/TokenExchange.json`
+Note: The hardhat config file sets up artifacts to be output to the frontend/artifacts directory. You can find the ABI in `frontend/artifacts/contracts/TokenSwap.sol/TokenExchange.json`
+
+Example deployed contract: https://testnet-zkevm.polygonscan.com/address/0x1fba51630d9557710778e827d786db624ee3c4e1
 
 #### 5. Verify contracts on Polygon zkEVM Testnet
 
@@ -59,7 +66,17 @@ Copy the contract address from the output of the previous command and run:
 npx hardhat verify --network polygonZKEVMTestnet <your-contract-address>
 ```
 
-Check out your verified contract on Polygonscan: https://testnet-zkevm.polygonscan.com/address/<your-contract-address>#code
+Check out your verified contract on Polygonscan using the link output by the verification command.
+
+Example verified contract: https://testnet-zkevm.polygonscan.com/address/0x1fba51630d9557710778e827d786db624ee3c4e1#code
+
+#### 6. Use the verified contract on Polygonscan to setProxyAddress
+
+The proxy contract address for the [API3 ETH-USD](https://market.api3.org/dapis/polygon-zkevm-testnet/ETH-USD) on the Polygon zkEVM Testnet is 0x26690F9f17FdC26D419371315bc17950a0FC90eD
+
+Use the link from the verification command output to view your contract on Polygonscan. Click the "Write Contract" tab. Click "Connect to Web3" and use Metamask to sign in with the account you used to deploy the contract. After signing in, select the setProxyAddress function. Enter the proxy contract address for the dApi and click "Write." Confirm the tx in your Metamask wallet.
+
+Example setProxyAddress tx: https://testnet-zkevm.polygonscan.com/tx/0x432b9039a1b99b04798dac319fdf175895064263e9660bd9d6e6ed1ca35689ec
 
 ### Frontend setup
 
@@ -94,7 +111,3 @@ cp .env.example .env.local
 ```bash
 yarn run dev
 ```
-
-## Tools used for starter template
-
-This project uses a Next.js frontend bootstrapped with create-rainbowkit. Scaffold a new RainbowKit + wagmi + Next.js app with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
