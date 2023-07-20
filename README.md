@@ -13,7 +13,26 @@ A starter template for building a dapp with Account Abstraction and a price feed
 ## Data feed: API3 ETH-USD
 
 [Read a dAPI documentation](https://docs.api3.org/guides/dapis/read-self-funded-dapi/)
-ETH-USD dAPI: https://market.api3.org/dapis/polygon-zkevm/ETH-USD
+
+ETH-USD dAPI: https://market.api3.org/dapis/polygon-zkevm-testnet/ETH-USD
+
+## Project logic
+
+TokenSwap checks the ETH-USD price from the API3 data feed on Polygon zkEVM Testnet and allows users to deposit ETH (collateral) to get (N ETH \* ETH-USD price) / (1e18) STA stable tokens. STA tokens can be burned to reclaim for ETH based on the current ETH-USD price at any time.
+
+- TokenSwap Contract: https://testnet-zkevm.polygonscan.com/address/0x1fba51630d9557710778e827d786db624ee3c4e1
+
+- TokenSwap Stable (STA) Token transfers: https://testnet-zkevm.polygonscan.com/token/0x1fba51630d9557710778e827d786db624ee3c4e1
+
+- API3 ETH-USD dAPI Polygon zkEVM Testnet data feed: https://market.api3.org/dapis/polygon-zkevm-testnet/ETH-USD
+
+Examples
+
+| ETH | ETH-USD price (uint256) | ETH-USD price $ | STA tokens | tx |
+| 1 | 1500000000000000000000 | $1,500 | 1500 | example |
+| 1 | 2000000000000000000000 | $2,000 | 2000 | example |
+| .01 | 1893000000000000000000 | $1,893 | 18.93 | https://testnet-zkevm.polygonscan.com/token/0x1fba51630d9557710778e827d786db624ee3c4e1 |
+| 1 | 1893000000000000000000 | $1,893 | 1893 | https://testnet-zkevm.polygonscan.com/tx/0xd4a309ad49a805a100fa18b3cdd0f45a1b4cd0da2794771b5420d000443a6bf5 |
 
 ## Getting started
 
