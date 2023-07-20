@@ -2,9 +2,25 @@
 
 A starter template for building a dapp with Account Abstraction and a price feed from an oracle on Polygon zkEVM.
 
+## Blockchain: Polygon zkEVM Testnet
+
+[Polygon zkEVM Documentation](https://zkevm.polygon.technology/)
+
+| Network | Public RPC URL | ChainID | Block Explorer URL |
+| -------- | ------- | -------- | ------- |
+| Polygon zkEVM Testnet | https://rpc.public.zkevm-test.net | 1442 | https://testnet-zkevm.polygonscan.com |
+
 ## Getting started
 
-### 1. Install dependencies:
+### 0. Wallet setup: Create a [Metamask](https://metamask.io/) wallet, add the Polygon zkEVM testnet network to your Metamask networks, and get Polygon zkEVM testnet ETH
+
+- Visit the [Polygon zkEVM Testnet blockchain explorer](https://testnet-zkevm.polygonscan.com/) page
+- Scroll down to the bottom
+- Click the “🦊 Add zkEVM Network” button
+- Open Metamask and switch your Metamask network to "zkEVM testnet"
+- Use the [Polygon Faucet](https://faucet.polygon.technology/) to add .02 Polygon zkEVM testnet ETH to your account
+
+### 1. Fork repo and install dependencies:
 
 ```bash
 cd frontend
