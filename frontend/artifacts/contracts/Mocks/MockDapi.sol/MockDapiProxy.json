@@ -1,0 +1,73 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MockDapiProxy",
+  "sourceName": "contracts/Mocks/MockDapi.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "read",
+      "outputs": [
+        {
+          "internalType": "int224",
+          "name": "_value",
+          "type": "int224"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_timestamp",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int224",
+          "name": "_value",
+          "type": "int224"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_timestamp",
+          "type": "uint32"
+        }
+      ],
+      "name": "setDapiValues",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "timestamp",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "value",
+      "outputs": [
+        {
+          "internalType": "int224",
+          "name": "",
+          "type": "int224"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610174806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80633fa4f2451461005157806357de26a414610076578063b80777ea1461009d578063f2128880146100c9575b600080fd5b60005461005e90601b0b81565b604051601b9190910b81526020015b60405180910390f35b60005460408051601b83900b8152600160e01b90920463ffffffff1660208301520161006d565b6000546100b490600160e01b900463ffffffff1681565b60405163ffffffff909116815260200161006d565b6100f46100d73660046100f6565b63ffffffff16600160e01b026001600160e01b0390911617600055565b005b6000806040838503121561010957600080fd5b823580601b0b811461011a57600080fd5b9150602083013563ffffffff8116811461013357600080fd5b80915050925092905056fea2646970667358221220fa9b6b702a9891564fe3495430e8ba9570e7c0c6d94786d353674659c976557c64736f6c63430008130033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80633fa4f2451461005157806357de26a414610076578063b80777ea1461009d578063f2128880146100c9575b600080fd5b60005461005e90601b0b81565b604051601b9190910b81526020015b60405180910390f35b60005460408051601b83900b8152600160e01b90920463ffffffff1660208301520161006d565b6000546100b490600160e01b900463ffffffff1681565b60405163ffffffff909116815260200161006d565b6100f46100d73660046100f6565b63ffffffff16600160e01b026001600160e01b0390911617600055565b005b6000806040838503121561010957600080fd5b823580601b0b811461011a57600080fd5b9150602083013563ffffffff8116811461013357600080fd5b80915050925092905056fea2646970667358221220fa9b6b702a9891564fe3495430e8ba9570e7c0c6d94786d353674659c976557c64736f6c63430008130033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

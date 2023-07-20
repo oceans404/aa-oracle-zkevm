@@ -6,47 +6,90 @@ A starter template for building a dapp with Account Abstraction and a price feed
 
 [Polygon zkEVM Documentation](https://zkevm.polygon.technology/)
 
-| Network | Public RPC URL | ChainID | Block Explorer URL |
-| -------- | ------- | -------- | ------- |
-| Polygon zkEVM Testnet | https://rpc.public.zkevm-test.net | 1442 | https://testnet-zkevm.polygonscan.com |
+| Network               | Public RPC URL                    | ChainID | Block Explorer URL                    | Verification API Key                   |
+| --------------------- | --------------------------------- | ------- | ------------------------------------- | -------------------------------------- |
+| Polygon zkEVM Testnet | https://rpc.public.zkevm-test.net | 1442    | https://testnet-zkevm.polygonscan.com | https://zkevm.polygonscan.com/myapikey |
 
 ## Getting started
 
-### 0. Wallet setup: Create a [Metamask](https://metamask.io/) wallet, add the Polygon zkEVM testnet network to your Metamask networks, and get Polygon zkEVM testnet ETH
+#### 0. Wallet setup: Create a [Metamask](https://metamask.io/) wallet, add the Polygon zkEVM testnet network to your Metamask networks, and get Polygon zkEVM testnet ETH
 
-- Visit the [Polygon zkEVM Testnet blockchain explorer](https://testnet-zkevm.polygonscan.com/) page
+- Visit the [Polygon zkEVM Testnet blockchain explorer](https://testnet-zkevm.polygonscan.com) page
 - Scroll down to the bottom
 - Click the “🦊 Add zkEVM Network” button
 - Open Metamask and switch your Metamask network to "zkEVM testnet"
 - Use the [Polygon Faucet](https://faucet.polygon.technology/) to add .02 Polygon zkEVM testnet ETH to your account
 
-### 1. Fork repo and install dependencies:
+### Backend setup
+
+#### 1. Enter backend directory and install dependencies:
+
+```
+cd backend
+yarn
+```
+
+#### 2. Create a `.env` file by copying the `.env.example` file:
+
+```bash
+cp .env.example .env
+```
+
+Update the .env file with your PRIVATE_KEY from Metamask and your ZKEVM_POLYGONSCAN_API_KEY from Polygonscan: https://zkevm.polygonscan.com/myapikey
+
+#### 3. Compile contracts:
+
+```
+npx hardhat compile
+```
+
+#### 4. Deploy contracts to Polygon zkEVM Testnet
+
+```
+npx hardhat run scripts/deploy.ts --network polygonZKEVMTestnet
+```
+
+Note: Contract artifacts are output to the frontend/artifacts directory. You can find the ABI in `frontend/artifacts/contracts/TokenSwap.sol/TokenExchange.json`
+
+#### 5. Verify contracts on Polygon zkEVM Testnet
+
+Copy the contract address from the output of the previous command and run:
+
+```
+npx hardhat verify --network polygonZKEVMTestnet <your-contract-address>
+```
+
+Check out your verified contract on Polygonscan: https://testnet-zkevm.polygonscan.com/address/<your-contract-address>#code
+
+### Frontend setup
+
+#### 1. Enter frontend directory and install dependencies:
 
 ```bash
 cd frontend
-yarn install
+yarn
 ```
 
-### 2. Create a `.env.local` file by copying the `.env.example` file:
+#### 2. Create a `.env.local` file by copying the `.env.example` file:
 
 ```bash
 cp .env.example .env.local
 ```
 
-### 3. Get a Wallet Connect Project ID
+#### 3. Get a Wallet Connect Project ID
 
 - Log in to the [Wallet Connect dashboard](https://cloud.walletconnect.com/sign-in) and create a new named project
 - Update the NEXT_PUBLIC_WALLET_CONNECT_PROJECT_NAME variable in the `.env.local` file with your new Wallet Connect Project Name, to match the name you gave your project in the Wallet Connect dashboard
 - Update the NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID variable in the `.env.local` file with your new Wallet Connect Project ID from the dashboard
 
-### 4. Get an Alchemy Key
+#### 4. Get an Alchemy Key
 
 - Sign in to the [Alchemy dashboard](https://alchemy.com/?r=0ebbbd3306fa2de1)
 - Create app with a name of your choice. Select "Polygon zkEVM" for chain and "Polygon zkEVM Testnet" for network
 - Select "View key" for the project you just created
 - Update the NEXT_PUBLIC_ALCHEMY_KEY variable in the `.env.local` file with your new Alchemy Key
 
-### 5. Start the project by running the development server:
+#### 5. Start the project by running the development server:
 
 ```bash
 yarn run dev
