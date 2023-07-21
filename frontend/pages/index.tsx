@@ -1,13 +1,14 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import { getAccount, fetchBalance, readContract } from "@wagmi/core";
 import { useState, useEffect } from "react";
-import Swap from "../components/Swap";
-const tokenContract = "0x1fba51630d9557710778e827d786db624ee3c4e1";
-import { abi } from "../artifacts/contracts/TokenSwap.sol/TokenExchange.json";
 import { ethers } from "ethers";
+
+import Swap from "../components/Swap";
+import { abi } from "../artifacts/contracts/TokenSwap.sol/TokenExchange.json";
+import { contractAddress } from "../artifacts/contractInfo";
+import styles from "../styles/Home.module.css";
 
 const fetchBalances = async (address: `0x${string}` | undefined) => {
   const balances: {
@@ -23,7 +24,7 @@ const fetchBalances = async (address: `0x${string}` | undefined) => {
     // fetch STA token balance
     const staToken = await fetchBalance({
       address: address,
-      token: tokenContract,
+      token: contractAddress,
     });
     balances.sta = staToken;
   }
@@ -34,7 +35,7 @@ const fetchBalances = async (address: `0x${string}` | undefined) => {
 // contract helpers
 const readPriceFeed = async (): Promise<[ethers.BigNumberish, number]> => {
   const [price]: any = await readContract({
-    address: tokenContract,
+    address: contractAddress,
     abi,
     functionName: "readDataFeed",
   });
@@ -47,7 +48,7 @@ const Home: NextPage = () => {
   >();
   const [addressIsConnected, setAddressIsConnected] = useState<boolean>(false);
   const [balance, setBalance] = useState<any | null>(null);
-  const [priceFeed, setPriceFeed] = useState<number | null>(null);
+  const [priceFeed, setPriceFeed] = useState<number | undefined>();
 
   useEffect(() => {
     // interval check whether user has connected or disconnected wallet
@@ -59,13 +60,17 @@ const Home: NextPage = () => {
 
     return () => clearInterval(interval);
   }, []);
-  useEffect(() => {
+
+  const checkBalances = () => {
     fetchBalances(connectedAddress)
       .catch(console.error)
       .then((data) => {
         setBalance(data);
       });
+  };
 
+  useEffect(() => {
+    checkBalances();
     // get price feed
     readPriceFeed()
       .catch(console.error)
@@ -88,10 +93,13 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <ConnectButton />
         <Swap
+          getUpdatedBalances={checkBalances}
+          connectedAddress={connectedAddress}
+          addressIsConnected={addressIsConnected}
           priceFeed={priceFeed}
-          maxEth={balance?.eth?.formatted}
-          maxSta={balance?.sta?.formatted}
-          tokenContract={tokenContract}
+          maxEth={balance?.eth?.formatted || 0}
+          maxSta={balance?.sta?.formatted || 0}
+          tokenContract={contractAddress}
         />
 
         <footer className={styles.footer}>

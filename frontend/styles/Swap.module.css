@@ -1,3 +1,7 @@
 .swap a {
   text-decoration: underline;
 }
+
+.swap .right-action {
+  background-color: blue !important;
+}
