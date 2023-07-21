@@ -102,24 +102,35 @@ const Home: NextPage = () => {
           tokenContract={contractAddress}
         />
 
-        <footer className={styles.footer}>
-          Made with 🫶🏼 by{" "}
-          <a
-            href="https://twitter.com/wc49358"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {" "}
-            Billy{" "}
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://twitter.com/0ceans404"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Steph
-          </a>
+        <footer className={styles.footer} style={{ textAlign: "center" }}>
+          <div>
+            Made with 🫶🏼 by{" "}
+            <a
+              href="https://twitter.com/wc49358"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {" "}
+              Billy{" "}
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://twitter.com/0ceans404"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Steph
+            </a>
+            <br></br>
+            🍴 Fork the code
+            <a
+              href="https://github.com/oceans404/aa-oracle-zkevm"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              on Github
+            </a>
+          </div>
         </footer>
       </main>
     </div>

@@ -1,6 +1,6 @@
 # aa-oracle-zkevm
 
-A starter template for building a dapp with Account Abstraction and a price feed from an oracle on Polygon zkEVM.
+A reference example of a stablecoin based on an API3 ETH/USD price feed on Polygon zkEVM Testnet.
 
 ## Blockchain: Polygon zkEVM Testnet
 
