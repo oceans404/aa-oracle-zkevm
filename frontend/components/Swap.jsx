@@ -190,7 +190,7 @@ const Swap = ({
 
               <form onSubmit={handleSubmit(onSwapEth)}>
                 <InputGroup my={4}>
-                  <InputLeftAddon children="ETH" />
+                  <InputLeftAddon>ETH</InputLeftAddon>
 
                   <Box>
                     <Input
@@ -207,7 +207,6 @@ const Swap = ({
                     )}
                   </Box>
                   <InputRightAddon
-                    children="Max"
                     onClick={setMaxEth}
                     className="right-action"
                     style={{
@@ -215,7 +214,9 @@ const Swap = ({
                       color: "black",
                       cursor: "pointer",
                     }}
-                  />
+                  >
+                    Max
+                  </InputRightAddon>
                 </InputGroup>
 
                 {isLoading ? (
@@ -240,7 +241,7 @@ const Swap = ({
               <p>Swap STA for ETH</p>
               <form onSubmit={handleSubmit(onSwapSta)}>
                 <InputGroup my={4}>
-                  <InputLeftAddon children="STA" />
+                  <InputLeftAddon>STA</InputLeftAddon>
                   <Box>
                     <Input
                       type="decimal"
@@ -257,7 +258,6 @@ const Swap = ({
                     )}
                   </Box>
                   <InputRightAddon
-                    children="Max"
                     onClick={setMaxSTA}
                     className="right-action"
                     style={{
@@ -265,7 +265,9 @@ const Swap = ({
                       color: "black",
                       cursor: "pointer",
                     }}
-                  />
+                  >
+                    Max
+                  </InputRightAddon>
                 </InputGroup>
 
                 {isLoading ? (
