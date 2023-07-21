@@ -114,22 +114,39 @@ const Swap = ({
   };
 
   const handleWithdrawEth = async (amountSta) => {
-    const parsedSta = ethers.utils.parseEther(amountSta.toString()) || 0;
-    console.log(parsedSta);
+    const parsedSta = ethers.utils.parseEther(amountSta.toString()) || "0";
+
+    const uintSta = ethers.BigNumber.from(parsedSta);
+    console.log(uintSta);
     if (addressIsConnected) {
       try {
-        const { hash } = await writeContract({
+        setIsLoading(true);
+        const { hash: hashApproveSpend } = await writeContract({
+          address: contractAddress,
+          abi,
+          chainId,
+          functionName: "approve",
+          args: [contractAddress, uintSta],
+          account: connectedAddress,
+        });
+
+        const tx1 = await waitForTransaction({
+          hash: hashApproveSpend,
+        });
+
+        const { hash: hashReclaimEth } = await writeContract({
           address: contractAddress,
           abi,
           chainId,
           functionName: "reclaimEth",
-          args: [parsedSta],
+          args: [uintSta],
           account: connectedAddress,
         });
-        setIsLoading(true);
-        const data = await waitForTransaction({
-          hash,
+
+        const tx2 = await waitForTransaction({
+          hash: hashReclaimEth,
         });
+
         await getUpdatedBalances();
         setIsLoading(false);
       } catch (error) {
