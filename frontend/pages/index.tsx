@@ -9,23 +9,24 @@ const tokenContract = "0x1fba51630d9557710778e827d786db624ee3c4e1";
 import { abi } from "../artifacts/contracts/TokenSwap.sol/TokenExchange.json";
 import { ethers } from "ethers";
 
-const fetchBalances = async (address: `0x${string}`) => {
+const fetchBalances = async (address: `0x${string}` | undefined) => {
   const balances: {
     [key: string]: any;
   } = {};
+  if (address) {
+    // fetch ETH balance
+    const eth = await fetchBalance({
+      address: address,
+    });
+    balances.eth = eth;
 
-  // fetch ETH balance
-  const eth = await fetchBalance({
-    address: address,
-  });
-  balances.eth = eth;
-
-  // fetch STA token balance
-  const staToken = await fetchBalance({
-    address: address,
-    token: tokenContract,
-  });
-  balances.sta = staToken;
+    // fetch STA token balance
+    const staToken = await fetchBalance({
+      address: address,
+      token: tokenContract,
+    });
+    balances.sta = staToken;
+  }
 
   return balances;
 };
@@ -41,17 +42,29 @@ const readPriceFeed = async (): Promise<[ethers.BigNumberish, number]> => {
 };
 
 const Home: NextPage = () => {
+  const [connectedAddress, setConnectedAddress] = useState<
+    `0x${string}` | undefined
+  >();
+  const [addressIsConnected, setAddressIsConnected] = useState<boolean>(false);
   const [balance, setBalance] = useState<any | null>(null);
   const [priceFeed, setPriceFeed] = useState<number | null>(null);
-  const account = getAccount();
+
   useEffect(() => {
-    if (account.address) {
-      fetchBalances(account.address)
-        .catch(console.error)
-        .then((data) => {
-          setBalance(data);
-        });
-    }
+    // interval check whether user has connected or disconnected wallet
+    const interval = setInterval(() => {
+      const { address, isConnected } = getAccount();
+      setConnectedAddress(address);
+      setAddressIsConnected(isConnected);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+  useEffect(() => {
+    fetchBalances(connectedAddress)
+      .catch(console.error)
+      .then((data) => {
+        setBalance(data);
+      });
 
     // get price feed
     readPriceFeed()
@@ -59,7 +72,7 @@ const Home: NextPage = () => {
       .then((price: any) => {
         setPriceFeed(parseFloat(ethers.utils.formatEther(price)));
       });
-  }, [account, account.address]);
+  }, [addressIsConnected, connectedAddress]);
 
   return (
     <div className={styles.container}>
@@ -76,8 +89,8 @@ const Home: NextPage = () => {
         <ConnectButton />
         <Swap
           priceFeed={priceFeed}
-          maxEth={balance?.eth.formatted}
-          maxSta={balance?.sta.formatted}
+          maxEth={balance?.eth?.formatted}
+          maxSta={balance?.sta?.formatted}
           tokenContract={tokenContract}
         />
 

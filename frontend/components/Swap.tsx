@@ -15,9 +15,9 @@ import {
 } from "@chakra-ui/react";
 
 const Swap = (props: {
-  priceFeed: number | null;
-  maxEth: number | null;
-  maxSta: number | null;
+  priceFeed: number | undefined;
+  maxEth: number | undefined;
+  maxSta: number | undefined;
   tokenContract: string;
 }) => {
   return (
