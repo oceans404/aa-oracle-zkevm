@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 
 import Swap from "../components/Swap";
+import AASwap from "../components/BicononyAA";
 import { abi } from "../artifacts/contracts/TokenSwap.sol/TokenExchange.json";
 import { contractAddress } from "../artifacts/contractInfo";
 import styles from "../styles/Home.module.css";
