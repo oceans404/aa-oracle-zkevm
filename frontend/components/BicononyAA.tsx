@@ -43,13 +43,13 @@ import {
 import { useEthersProvider, useEthersSigner } from "./ethers";
 
 type AccountAbstractionProps = {
-  getUpdatedBalances: string | undefined,  
-  connectedAddress: string,
-  addressIsConnected: boolean,
-  priceFeed: number | undefined,  
-  maxEth: number | null,
-  maxSta: number | null,
-  tokenContract: string,    
+  getUpdatedBalances: () => void;
+  connectedAddress: `0x${string}` | undefined;
+  addressIsConnected: boolean;
+  priceFeed: number | undefined;
+  maxEth: number | null;
+  maxSta: number | null;
+  tokenContract: string;
 };
 
 type DataProps = {
@@ -77,7 +77,6 @@ const paymaster: IPaymaster = new BiconomyPaymaster({
   paymasterUrl:
     "https://paymaster.biconomy.io/api/v1/1442/qwE3p3lk2.e29a50a3-2c5c-423e-99a4-958027e40a62", // you can get this value from biconomy dashboard.
 });
-
 
 const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
   getUpdatedBalances,
@@ -117,13 +116,13 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
 
   const setMaxEth = () => {
     if (maxEth !== null) {
-    setValue("ETH", maxEth);
+      setValue("ETH", maxEth);
     }
   };
 
   const setMaxSTA = () => {
     if (maxSta !== null) {
-    setValue("STA", maxSta);
+      setValue("STA", maxSta);
     }
   };
 
@@ -133,12 +132,11 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
 
   const onSwapEth = (data: DataProps) => {
     // handleDepositEth(data.ETH);
-    sponsoredTransaction ();
-
+    sponsoredTransaction();
   };
 
   const onSwapSta = (data: DataProps) => {
-   // handleWithdrawEth(data.STA);
+    // handleWithdrawEth(data.STA);
   };
 
   //In case there is no signer
@@ -167,7 +165,7 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
     return biconomyAccount;
   }
 
-  async function sponsoredTransaction () {
+  async function sponsoredTransaction() {
     // We setup the tx for
     const smartAccount = await createAccount();
 
@@ -182,12 +180,11 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
     const encodedData = contract.interface.encodeFunctionData(fragment);
     console.log(encodedData);
 
-
     // NEED TO FUND THE SMART ACCOUNT WITH ETH TO DEPOSIT COLLATERAL
     const transaction = {
-        to: contractAddress,
-        data: encodedData,
-        value: ethers.utils.parseEther("0.01") 
+      to: contractAddress,
+      data: encodedData,
+      value: ethers.utils.parseEther("0.01"),
     };
 
     const biconomyPaymaster =
@@ -385,7 +382,5 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
     </Card>
   );
 };
-
-
 
 export default AccountAbstraction;

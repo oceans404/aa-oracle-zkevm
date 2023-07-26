@@ -7,7 +7,7 @@ import { ethers } from "ethers";
 
 import Swap from "../components/Swap";
 import AASwap from "../components/BicononyAA";
-import { abi } from "../artifacts/contracts/TokenSwap.sol/TokenExchange.json";
+import TokenExchange from "../artifacts/contracts/TokenSwap.sol/TokenExchange.json";
 import { contractAddress } from "../artifacts/contractInfo";
 import styles from "../styles/Home.module.css";
 
@@ -37,7 +37,7 @@ const fetchBalances = async (address: `0x${string}` | undefined) => {
 const readPriceFeed = async (): Promise<[ethers.BigNumberish, number]> => {
   const [price]: any = await readContract({
     address: contractAddress,
-    abi,
+    abi: TokenExchange.abi,
     functionName: "readDataFeed",
   });
   return price;
