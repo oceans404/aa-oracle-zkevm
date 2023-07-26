@@ -63,7 +63,7 @@ const AccountAbstraction = () => {
     return biconomyAccount;
   }
 
-  async function sponsoredTransaction() {
+  async function sponsoredTransaction () {
     // We setup the tx for
     const smartAccount = await createAccount();
 
@@ -122,6 +122,14 @@ const AccountAbstraction = () => {
       console.log("error received ", e);
     }
   }
+
+  return(
+    <div>
+      <button onClick={sponsoredTransaction}>Sponsored Transaction</button>
+    </div>
+  );
 };
+
+
 
 export default AccountAbstraction;
