@@ -93,7 +93,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <ConnectButton />
-        <Swap
+        <AASwap
           getUpdatedBalances={checkBalances}
           connectedAddress={connectedAddress}
           addressIsConnected={addressIsConnected}

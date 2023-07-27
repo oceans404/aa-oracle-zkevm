@@ -139,14 +139,9 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
     // handleWithdrawEth(data.STA);
   };
 
-  //In case there is no signer
-  if (!signer) {
-    throw new Error("Signer is not available");
-  }
-
   const biconomySmartAccountConfig: BiconomySmartAccountConfig = {
-    signer: signer,
-    chainId: ChainId.POLYGON_MUMBAI, //POLYGON_ZKEVM_TESTNET  // POLYGON_MUMBAI
+    signer: signer as ethers.Signer,
+    chainId: ChainId.POLYGON_ZKEVM_TESTNET, //POLYGON_ZKEVM_TESTNET  // POLYGON_MUMBAI
     bundler: bundler,
     paymaster: paymaster,
   };
@@ -161,12 +156,14 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
       "address: ",
       await biconomySmartAccount.getSmartAccountAddress()
     );
-    //console.log("balances: ", await biconomySmartAccount.getAllTokenBalances({ chainId: ChainId.POLYGON_MUMBAI, eoaAddress: biconomySmartAccount.owner, tokenAddresses:[]}))
+ //   console.log("balances: ", await biconomySmartAccount.getAllTokenBalances({ chainId: ChainId.POLYGON_ZKEVM_TESTNET, eoaAddress: biconomySmartAccount.owner, tokenAddresses:[]}))
     return biconomyAccount;
   }
 
   async function sponsoredTransaction() {
     // We setup the tx for
+    console.log("signer: ", signer)
+    console.log("creating account...")
     const smartAccount = await createAccount();
 
     const scwAddress = await smartAccount.getSmartAccountAddress(); // do we need this ?
@@ -180,22 +177,25 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
     const encodedData = contract.interface.encodeFunctionData(fragment);
     console.log(encodedData);
 
+    console.log("Building transaction...")
     // NEED TO FUND THE SMART ACCOUNT WITH ETH TO DEPOSIT COLLATERAL
     const transaction = {
       to: contractAddress,
       data: encodedData,
-      value: ethers.utils.parseEther("0.01"),
+      value: ethers.utils.parseEther("0.001"),
     };
+    console.log("transaction: ", transaction)
 
-    const biconomyPaymaster =
-      smartAccount.paymaster as IHybridPaymaster<SponsorUserOperationDto>;
+    const biconomyPaymaster = smartAccount.paymaster as IHybridPaymaster<SponsorUserOperationDto>;
+    console.log("biconomyPaymaster: ", biconomyPaymaster)
 
-    let paymasterServiceData: SponsorUserOperationDto = {
-      mode: PaymasterMode.SPONSORED,
-    };
+    let paymasterServiceData: SponsorUserOperationDto = {mode: PaymasterMode.SPONSORED,};
+    console.log("paymasterServiceData: ", paymasterServiceData)
 
+    console.log("Building userOp...")
     let partialUserOp = await smartAccount.buildUserOp([transaction]);
 
+    console.log("Getting paymasterAndData...")
     try {
       const paymasterAndDataResponse =
         await biconomyPaymaster.getPaymasterAndData(
@@ -208,6 +208,9 @@ const AccountAbstraction: React.FC<AccountAbstractionProps> = ({
       console.log("error received ", e);
     }
 
+    console.log("Partial userOp: ", partialUserOp);
+
+    console.log("Sending userOp...");
     try {
       const userOpResponse = await smartAccount.sendUserOp(partialUserOp);
       console.log(`userOp Hash: ${userOpResponse.userOpHash}`);
