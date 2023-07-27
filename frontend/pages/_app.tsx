@@ -28,21 +28,21 @@ const provider = new providers.JsonRpcProvider(
   `https://polygonzkevm-testnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`
 );
 
-const wallet = new Wallet(process.env.NEXT_PUBLIC_PRIVATE_KEY || "", provider);
+// const wallet = new Wallet(process.env.NEXT_PUBLIC_PRIVATE_KEY || "", provider);
 
-const biconomySmartAccountConfig: BiconomySmartAccountConfig = {
-  signer: wallet,
-  chainId: ChainId.POLYGON_ZKEVM_TESTNET,
-  bundler: bundler,
-};
+// const biconomySmartAccountConfig: BiconomySmartAccountConfig = {
+//   signer: wallet,
+//   chainId: ChainId.POLYGON_ZKEVM_TESTNET,
+//   bundler: bundler,
+// };
 
-async function createAccount() {
-  let biconomySmartAccount = new BiconomySmartAccount(
-    biconomySmartAccountConfig
-  );
-  biconomySmartAccount = await biconomySmartAccount.init();
-  return biconomySmartAccount;
-}
+// async function createAccount() {
+//   let biconomySmartAccount = new BiconomySmartAccount(
+//     biconomySmartAccountConfig
+//   );
+//   biconomySmartAccount = await biconomySmartAccount.init();
+//   return biconomySmartAccount;
+// }
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     useState<BiconomySmartAccount | null | void>(null);
   useEffect(() => {
     const fetchBicoAccount = async () => {
-      return await createAccount();
+      //return await createAccount();
     };
 
     fetchBicoAccount()
