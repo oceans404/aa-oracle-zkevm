@@ -7,6 +7,7 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygonZkEvm, polygonZkEvmTestnet } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { alchemyProvider } from "wagmi/providers/alchemy";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
 import { IBundler, Bundler } from "@biconomy/bundler";
 import {
@@ -53,6 +54,10 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
   ],
   [
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_KEY || "" }),
+    jsonRpcProvider({ rpc: () => ({
+      http: `https://rpc.ankr.com/polygon_zkevm_testnet`,
+      webSocket: `wss://rpc.ankr.com/polygon_zkevm_testnet`, //no wss 
+      }), }), 
     publicProvider(),
   ]
 );
