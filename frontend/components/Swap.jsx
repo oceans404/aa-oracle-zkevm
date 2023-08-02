@@ -247,7 +247,7 @@ const Swap = ({
                     type="submit"
                     style={{
                       cursor: "pointer",
-                      backgroundColor: "rgb(14, 118, 253)",
+                      backgroundColor: "#854ce6",
                       color: "white",
                     }}
                   />
@@ -298,7 +298,7 @@ const Swap = ({
                     type="submit"
                     style={{
                       cursor: "pointer",
-                      backgroundColor: "rgb(14, 118, 253)",
+                      backgroundColor: "#854ce6",
                       color: "white",
                     }}
                   />
