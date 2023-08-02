@@ -102,7 +102,7 @@ const Home: NextPage = () => {
           tokenContract={contractAddress}
         />
 
-        <footer className={styles.footer} style={{ textAlign: "center" }}>
+        <div className={styles.footer}>
           <div>
             Made with 🫶🏼 by{" "}
             <a
@@ -122,7 +122,7 @@ const Home: NextPage = () => {
               Steph
             </a>
             <br></br>
-            🍴 Fork the code
+            🍴 Fork the code{" "}
             <a
               href="https://github.com/oceans404/aa-oracle-zkevm"
               rel="noopener noreferrer"
@@ -131,7 +131,7 @@ const Home: NextPage = () => {
               on Github
             </a>
           </div>
-        </footer>
+        </div>
       </main>
     </div>
   );

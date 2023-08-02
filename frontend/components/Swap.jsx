@@ -307,10 +307,12 @@ const Swap = ({
             </TabPanel>
           </TabPanels>
         </Tabs>
-
-        <br />
-        <Text>ETH balance: {parseFloat(maxEth).toLocaleString("en")}</Text>
-        <Text>STA balance: {parseFloat(maxSta).toLocaleString("en")}</Text>
+        {addressIsConnected && (
+          <>
+            <Text>ETH balance: {parseFloat(maxEth).toLocaleString("en")}</Text>
+            <Text>STA balance: {parseFloat(maxSta).toLocaleString("en")}</Text>
+          </>
+        )}
       </CardBody>
     </Card>
   );
