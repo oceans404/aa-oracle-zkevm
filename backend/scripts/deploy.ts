@@ -13,7 +13,7 @@ async function main() {
 
   console.log(
     `TokenEx contract address: ${tokenEx.target}
-Polygonscan link: https://testnet-zkevm.polygonscan.com/address/${tokenEx.target}`
+    Polygonscan link: https://testnet-zkevm.polygonscan.com/address/${tokenEx.target}`
   );
 }
 

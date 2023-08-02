@@ -51,7 +51,7 @@ describe("Token Exchange", function () {
     it("Only we can set the price feed", async function () {
       const { tokenEx, owner, otherAccount } = await loadFixture(deployBefore);
       await expect(tokenEx.connect(otherAccount).setProxyAddress('0x13d1Ed8c24911d88e6155cE32A66908399C97924')).to.be.revertedWith('Ownable: caller is not the owner');
-      await tokenEx.setProxyAddress('0x13d1Ed8c24911d88e6155cE32A66908399C97924');
+      await tokenEx.setProxyAddress('0x13d1Ed8c24911d88e6155cE32A66908399C97924'); //random address no real oracle
     });
   });
 
