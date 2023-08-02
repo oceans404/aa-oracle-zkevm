@@ -196,7 +196,7 @@ const Swap = ({
         </Text>
       </CardHeader>
       <CardBody>
-        <Tabs isFitted variant="enclosed">
+        <Tabs isFitted variant="enclosed" colorScheme="purple">
           <TabList>
             <Tab>ETH ➡️ STA</Tab>
             <Tab>STA ➡️ ETH</Tab>
